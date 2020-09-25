@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.com.xk.qn.qnplatfrom.mapper.LinkMapper">
+
+    <select id="selectAll" resultType="com.com.xk.qn.qnplatfrom.entity.dto.LinkDTO">
+        SELECT link.id as linkId,link.link_image,link.link_name,link.link_order,link.link_type,type.type_name,
+        type.type_order ,type.id as typeId,link.link_url from t_link link
+        LEFT JOIN t_link_type type on type.id = link.link_type
+        where link.state = '1' and type.state = '1'
+        order by type.type_order asc
+    </select>
+
+
+</mapper>

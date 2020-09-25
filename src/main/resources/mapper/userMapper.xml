@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.com.xk.qn.qnplatfrom.mapper.UserMapper">
+
+
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user (id,account, email,telenumber,username,pwd)
+        VALUES (#{id}, #{account},#{email},#{number},#{username},#{pwd});
+    </insert>
+    <select id="findByUsername" parameterType="String" resultType="com.com.xk.qn.qnplatfrom.entity.User">
+    SELECT id,account, email,telenumber,username,pwd from t_user where USERNAME = #{username};
+    </select>
+
+    <select id="queryByUsername" parameterType="String" resultType="com.com.xk.qn.qnplatfrom.entity.User">
+    SELECT id,account, email,telenumber,username,pwd from t_user where username = #{username};
+    </select>
+
+</mapper>
