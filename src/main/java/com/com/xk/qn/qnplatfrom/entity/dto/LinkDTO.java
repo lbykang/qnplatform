@@ -29,5 +29,7 @@ public class LinkDTO {
     private String typeName;
     /** 类型排序 */
     private String typeOrder;
+    /** 链接状态 */
+    private String state;
 
 }

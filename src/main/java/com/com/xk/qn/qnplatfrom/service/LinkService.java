@@ -1,12 +1,14 @@
 package com.com.xk.qn.qnplatfrom.service;
 
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.com.xk.qn.qnplatfrom.entity.Link;
 import com.com.xk.qn.qnplatfrom.entity.LinkType;
 import com.com.xk.qn.qnplatfrom.entity.vo.LinkFileVo;
 import com.com.xk.qn.qnplatfrom.entity.vo.LinkVO;
 
 import java.util.List;
 
-public interface LinkService {
+public interface LinkService extends IService<Link> {
 
     /**查询所有链接信息
      * @return
@@ -21,4 +23,6 @@ public interface LinkService {
     void addLinkType(String typeName, String order);
 
     void addLink(LinkFileVo linkFileVo, String imagePath);
+
+
 }

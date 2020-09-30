@@ -1,11 +1,15 @@
 package com.com.xk.qn.qnplatfrom.controller;
 
+import com.com.xk.qn.qnplatfrom.entity.Link;
 import com.com.xk.qn.qnplatfrom.entity.LinkType;
 import com.com.xk.qn.qnplatfrom.entity.vo.LinkFileVo;
+import com.com.xk.qn.qnplatfrom.entity.vo.LinkInfoVO;
 import com.com.xk.qn.qnplatfrom.entity.vo.LinkVO;
+import com.com.xk.qn.qnplatfrom.mapper.LinkMapper;
 import com.com.xk.qn.qnplatfrom.result.ResultCode;
 import com.com.xk.qn.qnplatfrom.result.ResultJson;
 import com.com.xk.qn.qnplatfrom.service.LinkService;
+import com.com.xk.qn.qnplatfrom.service.serviceImp.LinkServiceImpl;
 import com.com.xk.qn.qnplatfrom.utils.MinioUtil;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.SneakyThrows;
@@ -36,6 +40,9 @@ public class LinkController {
     @Autowired
     private MinioUtil minioUtil;
 
+    @Autowired
+    private LinkMapper linkMapper;
+
     @Value("${minio.endpoint}")
     private String endpoint;
 
@@ -50,6 +57,12 @@ public class LinkController {
     @ResponseBody
     public List<LinkVO> selectAllLinkInfo(){
        return linkService.selectAllLinkInfo();
+    }
+
+    @GetMapping("/getLinkById")
+    @ResponseBody
+    public LinkInfoVO selectAllLinkInfoById(String id){
+        return linkMapper.selectLinkById(id);
     }
 
     @GetMapping("/getLinkType")

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Date;
  **/
 @Data
 @TableName("t_link")
-public class Link {
+public class Link implements Serializable {
 
     /** 主键id */
     @TableId(type= IdType.UUID)

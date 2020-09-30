@@ -1,6 +1,7 @@
 package com.com.xk.qn.qnplatfrom.service.serviceImp;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.com.xk.qn.qnplatfrom.entity.Link;
 import com.com.xk.qn.qnplatfrom.entity.LinkType;
 import com.com.xk.qn.qnplatfrom.entity.dto.LinkDTO;
@@ -24,7 +25,7 @@ import java.util.*;
  * @create: 2020-09-21 17:41
  **/
 @Service
-public class LinkServiceImpl implements LinkService {
+public class LinkServiceImpl  extends ServiceImpl<LinkMapper,Link> implements LinkService {
 
     @Autowired
     private LinkMapper linkMapper;
@@ -50,6 +51,12 @@ public class LinkServiceImpl implements LinkService {
                 if (StringUtils.equals(link2.getTypeId(),link.getTypeId())){
                     Link link1 = new Link();
                     BeanUtils.copyProperties(link2,link1);
+                    if (StringUtils.equals(link1.getState(), "1")) {
+                        link1.setState("有效");
+                    } else {
+                        link1.setState("无效");
+                    }
+                    link1.setId(link2.getLinkId());
                     linkList1.add(link1);
                 }
             });
