@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @program: spring-security-demo
@@ -65,7 +66,8 @@ public class LinkServiceImpl  extends ServiceImpl<LinkMapper,Link> implements Li
             linkVOMap.put(link.getTypeId(),linkVO);
             linkVOList.add(linkVO);
         });
-        return linkVOList;
+        List<LinkVO> linkVOListResult = linkVOList.stream().sorted(Comparator.comparing(LinkVO::getTypeOrder)).collect(Collectors.toList());
+        return linkVOListResult;
     }
 
     @Override
